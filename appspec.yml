@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: /index.php
+    destination: /var/www/html/
+  - source: /heman.jpeg
+    destination: /var/www/html/
+hooks:
+  BeforeInstall:
+    - location: deploy/stop_apache
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: deploy/start_apache
+      timeout: 300
+      runas: root
